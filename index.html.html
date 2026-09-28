@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Escola Arco Verde Nova Gameleira | Formação de Condutores</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts (Poppins) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-escuro: #0b3b2c;
+      --verde-medio: #1e6f50;
+      --verde-claro: #2e9b76;
+      --amarelo: #f9c74f;
+      --cinza-claro: #f8f9fa;
+      --branco: #ffffff;
+      --sombra-suave: 0 10px 30px rgba(0,0,0,0.08);
+      --sombra-forte: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+      background-color: var(--branco);
+    }
+
+    /* ANIMAÇÕES */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .animate-fade-up {
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    .animate-fade-left {
+      animation: fadeInLeft 1s ease forwards;
+      opacity: 0;
+    }
+
+    .animate-fade-right {
+      animation: fadeInRight 1s ease forwards;
+      opacity: 0;
+    }
+
+    .animate-zoom {
+      animation: zoomIn 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1s; }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: rgba(11, 59, 44, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .navbar.scrolled {
+      padding: 8px 0;
+      background-color: rgba(11, 59, 44, 0.98);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--branco) !important;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar-brand i {
+      color: var(--amarelo);
+      font-size: 2rem;
+    }
+
+    .navbar-brand span {
+      color: var(--amarelo);
+    }
+
+    .nav-link {
+      color: rgba(255,255,255,0.85) !important;
+      font-weight: 500;
+      margin: 0 8px;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--amarelo);
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--amarelo) !important;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, rgba(11, 59, 44, 0.92) 0%, rgba(30, 111, 80, 0.85) 100%), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(to top, var(--branco), transparent);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      color: var(--branco);
+      padding: 120px 0 80px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 span {
+      color: var(--amarelo);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      max-width: 600px;
+    }
+
+    .btn-hero {
+      background-color: var(--amarelo);
+      color: var(--verde-escuro);
+      font-weight: 700;
+      padding: 14px 35px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 8px 25px rgba(249, 199, 79, 0.4);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-hero:hover {
+      background-color: #e8b13c;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(249, 199, 79, 0.6);
+      color: var(--verde-escuro);
+    }
+
+    .btn-outline-hero {
+      background: transparent;
+      color: var(--branco);
+      border: 2px solid var(--branco);
+      font-weight: 600;
+      padding: 12px 33px;
+      border-radius: 50px;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline-hero:hover {
+      background-color: var(--branco);
+      color: var(--verde-escuro);
+      transform: translateY(-3px);
+    }
+
+    .hero-icon-float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* SEÇÕES */
+    section {
+      padding: 90px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--verde-escuro);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(to right, var(--amarelo), var(--verde-claro));
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: #6c757d;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* SERVIÇOS */
+    .servico-card {
+      background: var(--branco);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: var(--sombra-suave);
+      transition: all 0.4s ease;
+      height: 100%;
+      border: 1px solid rgba(0,0,0,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .servico-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--amarelo), var(--verde-claro));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .servico-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .servico-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--sombra-forte);
+    }
+
+    .servico-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--verde-escuro), var(--verde-claro));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      font-size: 2.2rem;
+      color: var(--amarelo);
+      transition: all 0.4s ease;
+    }
+
+    .servico-card:hover .servico-icon {
+      transform: rotateY(180deg);
+    }
+
+    .servico-card h4 {
+      font-weight: 700;
+      color: var(--verde-escuro);
+      margin-bottom: 15px;
+    }
+
+    .servico-card p {
+      color: #6c757d;
+      line-height: 1.7;
+    }
+
+    /* SOBRE */
+    .sobre-img {
+      border-radius: 20px;
+      box-shadow: var(--sombra-forte);
+      transition: transform 0.4s ease;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .sobre-img:hover {
+      transform: scale(1.02);
+    }
+
+    .sobre-lista {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sobre-lista li {
+      padding: 10px 0;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sobre-lista li i {
+      color: var(--verde-claro);
+      font-size: 1.3rem;
+    }
+
+    /* NÚMEROS */
+    .numero-item {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .numero-item i {
+      font-size: 2.5rem;
+      color: var(--amarelo);
+      margin-bottom: 15px;
+    }
+
+    .numero-item h3 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--branco);
+      margin-bottom: 5px;
+    }
+
+    .numero-item p {
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+    }
+
+    .bg-numeros {
+      background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-numeros::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(249,199,79,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    /* DEPOIMENTOS */
+    .depoimento-card {
+      background: var(--branco);
+      border-radius: 20px;
+      padding: 35px 30px;
+      box-shadow: var(--sombra-suave);
+      transition: all 0.4s ease;
+      height: 100%;
+      position: relative;
+    }
+
+    .depoimento-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--sombra-forte);
+    }
+
+    .depoimento-card .quote-icon {
+      font-size: 3rem;
+      color: var(--amarelo);
+      opacity: 0.3;
+      position: absolute;
+      top: 20px;
+      right: 25px;
+    }
+
+    .depoimento-card p {
+      font-style: italic;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .depoimento-card .cliente {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .depoimento-card .cliente img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--amarelo);
+    }
+
+    .depoimento-card .cliente h6 {
+      margin: 0;
+      font-weight: 700;
+      color: var(--verde-escuro);
+    }
+
+    .depoimento-card .cliente small {
+      color: #999;
+    }
+
+    .estrelas i {
+      color: var(--amarelo);
+      font-size: 0.9rem;
+    }
+
+    /* CONTATO */
+    .contato-info {
+      background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+      border-radius: 20px;
+      padding: 45px 35px;
+      color: var(--branco);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contato-info::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(249,199,79,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .contato-info h3 {
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    .contato-info .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contato-info .info-item i {
+      font-size: 1.3rem;
+      color: var(--amarelo);
+      background: rgba(255,255,255,0.1);
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contato-info .info-item p {
+      margin: 0;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .contato-info .info-item strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .form-contato {
+      background: var(--branco);
+      border-radius: 20px;
+      padding: 45px 35px;
+      box-shadow: var(--sombra-suave);
+      height: 100%;
+    }
+
+    .form-contato .form-control {
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-contato .form-control:focus {
+      border-color: var(--verde-claro);
+      box-shadow: 0 0 0 0.2rem rgba(46, 155, 118, 0.15);
+    }
+
+    .form-contato .btn-enviar {
+      background: linear-gradient(135deg, var(--verde-escuro), var(--verde-claro));
+      color: var(--branco);
+      font-weight: 600;
+      padding: 14px 40px;
+      border-radius: 50px;
+      border: none;
+      transition: all 0.3s;
+      width: 100%;
+      font-size: 1.05rem;
+    }
+
+    .form-contato .btn-enviar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(30, 111, 80, 0.4);
+    }
+
+    /* MAPA */
+    .mapa-container {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--sombra-suave);
+      height: 400px;
+    }
+
+    .mapa-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--verde-escuro);
+      color: rgba(255,255,255,0.8);
+      padding: 60px 0 25px;
+      position: relative;
+    }
+
+    footer h5 {
+      color: var(--branco);
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    footer h5::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--amarelo);
+      border-radius: 2px;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    footer ul li {
+      margin-bottom: 10px;
+    }
+
+    footer ul li a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer ul li a:hover {
+      color: var(--amarelo);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--branco);
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      background-color: var(--amarelo);
+      color: var(--verde-escuro);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 25px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    /* POLÍTICA DE PRIVACIDADE (modal) */
+    .modal-content {
+      border-radius: 20px;
+      border: none;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--verde-escuro), var(--verde-medio));
+      color: var(--branco);
+      border-radius: 20px 20px 0 0;
+      padding: 20px 30px;
+    }
+
+    .modal-header .btn-close {
+      filter: brightness(0) invert(1);
+    }
+
+    .modal-body {
+      padding: 30px;
+      max-height: 60vh;
+      overflow-y: auto;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .modal-body h6 {
+      color: var(--verde-escuro);
+      font-weight: 700;
+      margin-top: 20px;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 991px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .navbar-brand {
+        font-size: 1.2rem;
+      }
+      .navbar-brand i {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      section {
+        padding: 60px 0;
+      }
+      .servico-card {
+        padding: 30px 20px;
+      }
+      .contato-info, .form-contato {
+        padding: 30px 20px;
+      }
+      .hero-content {
+        padding: 100px 0 60px;
+      }
+    }
+
+    /* SCROLL SUAVE */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* BOTÃO WHATSAPP FLUTUANTE */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      transition: all 0.3s;
+      text-decoration: none;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      color: white;
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+    }
+
+    /* SCROLL REVEAL (simples) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-car-front-fill"></i>
+        Arco Verde <span>Nova Gameleira</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#depoimentos">Depoimentos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-hero btn-sm px-3 py-2" href="https://wa.me/5531995850120" target="_blank">
+              <i class="bi bi-whatsapp me-1"></i> Agendar
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h1 class="animate-fade-up">Sua habilitação começa aqui na <span>Arco Verde</span></h1>
+          <p class="animate-fade-up delay-1">Formação de condutores com qualidade, segurança e profissionais experientes. Realize seu sonho de dirigir com quem entende do assunto.</p>
+          <div class="d-flex flex-wrap gap-3 animate-fade-up delay-2">
+            <a href="#contato" class="btn-hero">
+              <i class="bi bi-calendar-check me-2"></i>Agende sua aula
+            </a>
+            <a href="#servicos" class="btn-outline-hero">
+              <i class="bi bi-info-circle me-2"></i>Nossos serviços
+            </a>
+          </div>
+          <div class="mt-4 animate-fade-up delay-3">
+            <div class="d-flex align-items-center gap-3 text-white">
+              <div class="d-flex">
+                <i class="bi bi-star-fill" style="color: var(--amarelo);"></i>
+                <i class="bi bi-star-fill" style="color: var(--amarelo);"></i>
+                <i class="bi bi-star-fill" style="color: var(--amarelo);"></i>
+                <i class="bi bi-star-fill" style="color: var(--amarelo);"></i>
+                <i class="bi bi-star-half" style="color: var(--amarelo);"></i>
+              </div>
+              <span style="opacity: 0.9;">+500 alunos satisfeitos</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-block">
+          <div class="text-center hero-icon-float">
+            <i class="bi bi-car-front-fill" style="font-size: 15rem; color: rgba(249,199,79,0.15);"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" style="background-color: var(--cinza-claro);">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <p class="section-subtitle">Oferecemos formação completa para todas as categorias de habilitação, com metodologia moderna e instrutores qualificados.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="servico-card">
+            <div class="servico-icon">
+              <i class="bi bi-car-front"></i>
+            </div>
+            <h4>Categoria B</h4>
+            <p>Formação completa para carros de passeio. Aulas teóricas e práticas com veículos modernos e instrutores experientes.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="servico-card">
+            <div class="servico-icon">
+              <i class="bi bi-truck"></i>
+            </div>
+            <h4>Categoria A</h4>
+            <p>Habilitação para motocicletas, motonetas e triciclos. Treinamento focado em segurança e técnica de pilotagem.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="servico-card">
+            <div class="servico-icon">
+              <i class="bi bi-book"></i>
+            </div>
+            <h4>Aulas Teóricas</h4>
+            <p>Curso teórico completo com material didático atualizado e simulados preparatórios para o exame do DETRAN.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="servico-card">
+            <div class="servico-icon">
+              <i class="bi bi-steering-wheel"></i>
+            </div>
+            <h4>Aulas Práticas</h4>
+            <p>Prática de direção com veículos da autoescola, em rotas variadas e acompanhamento personalizado.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="servico-card">
+            <div class="servico-icon">
+              <i class="bi bi-arrow-repeat"></i>
+            </div>
+            <h4>Reciclagem</h4>
+            <p>Curso de reciclagem para condutores que precisam atualizar a CNH ou recuperar o direito de dirigir.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="servico-card">
+            <div class="servico-icon">
+              <i class="bi bi-person-badge"></i>
+            </div>
+            <h4>Aulas Particulares</h4>
+            <p>Aulas personalizadas para quem já tem CNH mas precisa de mais confiança no volante.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 reveal">
+          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Instrutor de autoescola" class="sobre-img">
+        </div>
+        <div class="col-lg-6 reveal">
+          <h2 class="section-title">Sobre Nós</h2>
+          <p class="mt-4 mb-4" style="line-height: 1.9; color: #555;">
+            A <strong>Auto Escola Arco Verde Nova Gameleira</strong> é uma empresa de formação de condutores localizada em Belo Horizonte - MG. Nosso compromisso é oferecer um ensino de qualidade, com profissionais capacitados e veículos modernos, preparando nossos alunos para uma direção segura e responsável.
+          </p>
+          <p style="line-height: 1.9; color: #555;">
+            Atuamos com dedicação na formação de novos condutores, reciclagem e aperfeiçoamento, sempre seguindo as normas do DETRAN e do CONTRAN. Nosso objetivo é formar motoristas conscientes e preparados para os desafios do trânsito.
+          </p>
+          <ul class="sobre-lista mt-4">
+            <li><i class="bi bi-check-circle-fill"></i> Instrutores qualificados e experientes</li>
+            <li><i class="bi bi-check-circle-fill"></i> Veículos modernos e bem mantidos</li>
+            <li><i class="bi bi-check-circle-fill"></i> Metodologia de ensino atualizada</li>
+            <li><i class="bi bi-check-circle-fill"></i> Horários flexíveis para suas aulas</li>
+            <li><i class="bi bi-check-circle-fill"></i> Localização de fácil acesso</li>
+          </ul>
+          <div class="mt-4">
+            <a href="https://wa.me/5531995850120" target="_blank" class="btn-hero">
+              <i class="bi bi-whatsapp me-2"></i>Fale conosco
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section class="bg-numeros">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 reveal">
+          <div class="numero-item">
+            <i class="bi bi-people-fill"></i>
+            <h3>+500</h3>
+            <p>Alunos Formados</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal">
+          <div class="numero-item">
+            <i class="bi bi-car-front-fill"></i>
+            <h3>+10</h3>
+            <p>Veículos na Frota</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal">
+          <div class="numero-item">
+            <i class="bi bi-calendar-check-fill"></i>
+            <h3>+5</h3>
+            <p>Anos de Experiência</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal">
+          <div class="numero-item">
+            <i class="bi bi-star-fill"></i>
+            <h3>98%</h3>
+            <p>Aprovação no DETRAN</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos" style="background-color: var(--cinza-claro);">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <h2 class="section-title">O que dizem nossos alunos</h2>
+        <p class="section-subtitle">A satisfação de nossos alunos é o nosso maior orgulho. Veja alguns depoimentos de quem já se formou conosco.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="depoimento-card">
+            <i class="bi bi-quote quote-icon"></i>
+            <div class="estrelas mb-3">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>"Excelente autoescola! Instrutores pacientes e atenciosos. Consegui minha habilitação na primeira tentativa. Recomendo a todos!"</p>
+            <div class="cliente">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Aluna">
+              <div>
+                <h6>Mariana Silva</h6>
+                <small>Aluna Categoria B</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="depoimento-card">
+            <i class="bi bi-quote quote-icon"></i>
+            <div class="estrelas mb-3">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>"Fiz minha habilitação para moto e carro aqui. Estrutura ótima, veículos novos e atendimento de primeira. Nota 10!"</p>
+            <div class="cliente">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Aluno">
+              <div>
+                <h6>Carlos Oliveira</h6>
+                <small>Aluno Categoria A e B</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 reveal">
+          <div class="depoimento-card">
+            <i class="bi bi-quote quote-icon"></i>
+            <div class="estrelas mb-3">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+            </div>
+            <p>"Amei a experiência! A equipe é muito profissional e o processo foi tranquilo do início ao fim. Já indiquei para vários amigos."</p>
+            <div class="cliente">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Aluna">
+              <div>
+                <h6>Juliana Santos</h6>
+                <small>Aluna Categoria B</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <h2 class="section-title">Entre em Contato</h2>
+        <p class="section-subtitle">Estamos prontos para atender você. Agende sua aula ou tire suas dúvidas.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-5 reveal">
+          <div class="contato-info">
+            <h3>Informações de Contato</h3>
+            <div class="info-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <p>
+                <strong>Endereço</strong>
+                Rua Nicias Continentino, 939<br>
+                Vila Nova Gameleira II<br>
+                Belo Horizonte - MG<br>
+                CEP: 30510-160
+              </p>
+            </div>
+            <div class="info-item">
+              <i class="bi bi-telephone-fill"></i>
+              <p>
+                <strong>Telefone / WhatsApp</strong>
+                (31) 99585-0120
+              </p>
+            </div>
+            <div class="info-item">
+              <i class="bi bi-envelope-fill"></i>
+              <p>
+                <strong>E-mail</strong>
+                novacfcgameleira@gmail.com
+              </p>
+            </div>
+            <div class="info-item">
+              <i class="bi bi-clock-fill"></i>
+              <p>
+                <strong>Horário de Atendimento</strong>
+                Segunda a Sexta: 8h às 18h<br>
+                Sábado: 8h às 12h
+              </p>
+            </div>
+            <div class="social-icons mt-4">
+              <a href="https://wa.me/5531995850120" target="_blank"><i class="bi bi-whatsapp"></i></a>
+              <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+              <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7 reveal">
+          <div class="form-contato">
+            <h3 class="mb-4" style="color: var(--verde-escuro); font-weight: 700;">Envie sua mensagem</h3>
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Seu nome completo" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control" placeholder="Seu e-mail" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="tel" class="form-control" placeholder="Telefone / WhatsApp" required>
+                </div>
+                <div class="col-md-6">
+                  <select class="form-control" required>
+                    <option value="">Categoria de interesse</option>
+                    <option>Categoria A (Moto)</option>
+                    <option>Categoria B (Carro)</option>
+                    <option>Categoria A e B</option>
+                    <option>Reciclagem</option>
+                    <option>Aulas Particulares</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <textarea class="form-control" rows="4" placeholder="Sua mensagem" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn-enviar">
+                    <i class="bi bi-send me-2"></i>Enviar Mensagem
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAPA -->
+      <div class="row mt-5 reveal">
+        <div class="col-12">
+          <div class="mapa-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.567!2d-43.972!3d-19.925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDU1JzMwLjAiUyA0M8KwNTgnMTkuMiJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h5>Arco Verde Nova Gameleira</h5>
+          <p style="line-height: 1.8;">Formação de condutores com qualidade, segurança e responsabilidade. Realize seu sonho de dirigir conosco.</p>
+          <p><strong>CNPJ:</strong> 68.690.505/0001-69</p>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h5>Links Rápidos</h5>
+          <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5>Serviços</h5>
+          <ul>
+            <li><a href="#servicos">Categoria A</a></li>
+            <li><a href="#servicos">Categoria B</a></li>
+            <li><a href="#servicos">Aulas Teóricas</a></li>
+            <li><a href="#servicos">Aulas Práticas</a></li>
+            <li><a href="#servicos">Reciclagem</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5>Contato</h5>
+          <ul>
+            <li><i class="bi bi-geo-alt me-2"></i>Rua Nicias Continentino, 939</li>
+            <li><i class="bi bi-geo-alt me-2"></i>Vila Nova Gameleira II</li>
+            <li><i class="bi bi-geo-alt me-2"></i>Belo Horizonte - MG</li>
+            <li><i class="bi bi-telephone me-2"></i>(31) 99585-0120</li>
+            <li><i class="bi bi-envelope me-2"></i>novacfcgameleira@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p class="mb-0">
+          &copy; 2026 Auto Escola Arco Verde Nova Gameleira - Todos os direitos reservados. | 
+          <a href="#" data-bs-toggle="modal" data-bs-target="#politicaModal" style="color: var(--amarelo); text-decoration: none;">Política de Privacidade</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL POLÍTICA DE PRIVACIDADE -->
+  <div class="modal fade" id="politicaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-shield-lock me-2"></i>Política de Privacidade</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p>A <strong>Auto Escola Arco Verde Nova Gameleira</strong>, inscrita no CNPJ 68.690.505/0001-69, valoriza a privacidade e a segurança dos dados pessoais de seus alunos e visitantes. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informações.</p>
+
+          <h6>1. Coleta de Informações</h6>
+          <p>Coletamos informações pessoais fornecidas voluntariamente por você, como nome, e-mail, telefone, endereço e dados necessários para a matrícula nos cursos de formação de condutores. Também podemos coletar dados automaticamente, como endereço IP e cookies de navegação.</p>
+
+          <h6>2. Uso das Informações</h6>
+          <p>Utilizamos seus dados para: processar matrículas, entrar em contato sobre aulas e serviços, enviar comunicações informativas, cumprir obrigações legais e melhorar nossos serviços. Não compartilhamos seus dados com terceiros, exceto quando exigido por lei ou para fins de registro no DETRAN.</p>
+
+          <h6>3. Armazenamento e Segurança</h6>
+          <p>Seus dados são armazenados em ambiente seguro, com medidas técnicas e administrativas para proteger contra acesso não autorizado, alteração, divulgação ou destruição. Mantemos os dados apenas pelo tempo necessário para cumprir as finalidades descritas.</p>
+
+          <h6>4. Seus Direitos</h6>
+          <p>Você tem o direito de acessar, corrigir, atualizar ou solicitar a exclusão de seus dados pessoais. Para exercer esses direitos, entre em contato pelo e-mail novacfcgameleira@gmail.com ou pelo telefone (31) 99585-0120.</p>
+
+          <h6>5. Cookies</h6>
+          <p>Utilizamos cookies para melhorar sua experiência de navegação e analisar o tráfego do site. Você pode configurar seu navegador para recusar cookies, mas isso pode afetar algumas funcionalidades.</p>
+
+          <h6>6. Alterações nesta Política</h6>
+          <p>Reservamo-nos o direito de atualizar esta Política de Privacidade periodicamente. Recomendamos que você a revise regularmente. O uso contínuo do site após alterações constitui aceitação das novas condições.</p>
+
+          <h6>7. Contato</h6>
+          <p>Em caso de dúvidas sobre esta Política de Privacidade, entre em contato:</p>
+          <p>
+            <strong>Auto Escola Arco Verde Nova Gameleira</strong><br>
+            Rua Nicias Continentino, 939 - Vila Nova Gameleira II<br>
+            Belo Horizonte - MG - CEP 30510-160<br>
+            E-mail: novacfcgameleira@gmail.com<br>
+            Telefone: (31) 99585-0120
+          </p>
+
+          <p class="mt-4 text-muted"><small>Última atualização: Março de 2026</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÃO WHATSAPP FLUTUANTE -->
+  <a href="https://wa.me/5531995850120?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20autoescola." class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll reveal
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const elementVisible = 100;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    window.addEventListener('scroll', reveal);
+    reveal();
+
+    // Smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const navHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+
+    // Fechar navbar mobile ao clicar em link
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navbarCollapse = document.querySelector('#navbarNav');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navbarCollapse.classList.contains('show')) {
+          new bootstrap.Collapse(navbarCollapse).hide();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
